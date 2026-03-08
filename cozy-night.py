@@ -1,23 +1,6 @@
 import os
-from dotenv import load_dotenv
-from wyze_sdk import Client
+from wyze-setbulbs import apply_scene
 
-# 1. Load the secrets from the .env file
-load_dotenv()
-
-# 2. Log in and get the access token using the environment variables
-print("Authenticating with Wyze...")
-login_response = Client().login(
-    email=os.getenv('WYZE_EMAIL'),
-    password=os.getenv('WYZE_PASSWORD'),
-    key_id=os.getenv('WYZE_KEY_ID'),
-    api_key=os.getenv('WYZE_API_KEY')
-)
-
-# 3. Create the client using the temporary token
-client = Client(token=login_response['access_token'])
-
-# 4. Define your bulb settings here
 bulbs_config = [
     {
         "name": "Desk Lamp",
@@ -49,23 +32,5 @@ bulbs_config = [
     }
 ]
 
-# 5. Loop through the configuration and apply the settings
-print("Applying settings to bulbs...")
-for bulb in bulbs_config:
-    try:
-        # Check if the bulb should be off
-        if not bulb.get("is_on", True):
-            client.bulbs.turn_off(device_mac=bulb['mac'], device_model=bulb['model']) #
-            print(f"Turned off {bulb['name']}")
-
-        # Otherwise, turn it on and set the colors
-        else:
-            client.bulbs.turn_on(device_mac=bulb['mac'], device_model=bulb['model']) #
-            client.bulbs.set_color(device_mac=bulb['mac'], device_model=bulb['model'], color=bulb['color']) #
-            client.bulbs.set_brightness(device_mac=bulb['mac'], device_model=bulb['model'], brightness=bulb['brightness']) #
-            print(f"Successfully updated {bulb['name']}")
-
-    except Exception as e:
-        print(f"Failed to update {bulb['name']}: {e}")
-
-print("All done!")
+if __name__ == "__main__":
+    apply_scene(bulbs_config)
