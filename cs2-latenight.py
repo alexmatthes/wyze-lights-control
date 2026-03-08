@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import os
 from dotenv import load_dotenv
 from wyze_sdk import Client
@@ -74,7 +73,7 @@ for bulb in bulbs_config:
         print(f"Failed to update {bulb['name']}: {e}")
 
 print("All done!")
-=======
+
 import os
 from dotenv import load_dotenv
 from wyze_sdk import Client
@@ -150,4 +149,3 @@ for bulb in bulbs_config:
         print(f"Failed to update {bulb['name']}: {e}")
 
 print("All done!")
->>>>>>> 0ebe25542233dd8b25311fee142f3b242826077a
