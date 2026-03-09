@@ -1,10 +1,13 @@
 import os
+import re
 from dotenv import load_dotenv
+
+load_dotenv()
+
 from wyze_sdk import Client
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def get_wyze_client():
-    """Loads secrets and authenticates with Wyze."""
-    load_dotenv()
     print("Authenticating with Wyze...")
     login_response = Client().login(
         email=os.getenv('WYZE_EMAIL'),
@@ -14,39 +17,52 @@ def get_wyze_client():
     )
     return Client(token=login_response['access_token'])
 
+def validate_bulb_config(bulb):
+    """Raises ValueError if config has obvious problems."""
+    if "color" in bulb:
+        if not re.fullmatch(r"[0-9A-Fa-f]{6}", bulb["color"]):
+            raise ValueError(f"{bulb['name']}: invalid hex color '{bulb['color']}' (use 6-char hex, no '#')")
+    if "brightness" in bulb:
+        if not (1 <= bulb["brightness"] <= 100):
+            raise ValueError(f"{bulb['name']}: brightness must be 1–100, got {bulb['brightness']}")
+
+def apply_single_bulb(client, bulb):
+    """Applies config to one bulb. Returns (name, success, error)."""
+    mac, model, name = bulb['mac'], bulb['model'], bulb['name']
+    try:
+        validate_bulb_config(bulb)
+        if not bulb.get("is_on", True):
+            client.bulbs.turn_off(device_mac=mac, device_model=model)
+            return (name, True, None)
+
+        client.bulbs.turn_on(device_mac=mac, device_model=model)
+        if "color" in bulb:
+            client.bulbs.set_color(device_mac=mac, device_model=model, color=bulb['color'])
+        elif "color_temp" in bulb:
+            client.bulbs.set_color_temp(device_mac=mac, device_model=model, color_temp=bulb['color_temp'])
+        if "brightness" in bulb:
+            client.bulbs.set_brightness(device_mac=mac, device_model=model, brightness=bulb['brightness'])
+        return (name, True, None)
+    except Exception as e:
+        return (name, False, str(e))
+
 def apply_scene(bulbs_config):
-    """Takes a list of bulb configurations and applies them."""
+    """Takes a list of bulb configurations and applies them in parallel."""
     client = get_wyze_client()
     print("Applying settings to bulbs...")
 
-    for bulb in bulbs_config:
-        mac = bulb['mac']
-        model = bulb['model']
-        name = bulb['name']
+    results = []
+    with ThreadPoolExecutor() as executor:
+        futures = {executor.submit(apply_single_bulb, client, bulb): bulb for bulb in bulbs_config}
+        for future in as_completed(futures):
+            results.append(future.result())
 
-        try:
-            # Check if the bulb should be explicitly turned off
-            if not bulb.get("is_on", True):
-                client.bulbs.turn_off(device_mac=mac, device_model=model)
-                print(f"Turned off {name}")
-                continue  # Skip the rest of the loop for this bulb
+    succeeded = [name for name, ok, _ in results if ok]
+    failed = [(name, err) for name, ok, err in results if not ok]
 
-            # Otherwise, turn the bulb on
-            client.bulbs.turn_on(device_mac=mac, device_model=model)
+    for name in succeeded:
+        print(f"✓ {name}")
+    for name, err in failed:
+        print(f"✗ {name}: {err}")
 
-            # Apply either a hex color or a color temperature
-            if "color" in bulb:
-                client.bulbs.set_color(device_mac=mac, device_model=model, color=bulb['color'])
-            elif "color_temp" in bulb:
-                client.bulbs.set_color_temp(device_mac=mac, device_model=model, color_temp=bulb['color_temp'])
-
-            # Apply brightness if specified
-            if "brightness" in bulb:
-                client.bulbs.set_brightness(device_mac=mac, device_model=model, brightness=bulb['brightness'])
-
-            print(f"Successfully updated {name}")
-
-        except Exception as e:
-            print(f"Failed to update {name}: {e}")
-
-    print("All done!")
+    print(f"\nDone — {len(succeeded)}/{len(bulbs_config)} bulbs updated successfully.")
