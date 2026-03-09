@@ -1,5 +1,5 @@
 import os
-from wyze-setbulbs import apply_scene
+from wyze_setbulbs import apply_scene
 
 bulbs_config = [
     {
