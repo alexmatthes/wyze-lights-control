@@ -17,34 +17,34 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 4000,      # Neutral cool-white — alert and accurate, no color distortion
-        "brightness": 100        # Full brightness — this is your primary work light
+        "color_temp": 4000,  # Neutral cool-white — alert and accurate, no color distortion
+        "brightness": 100,  # Full brightness — this is your primary work light
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 4000,      # Matches the desk lamp to keep the room chromatically consistent
-        "brightness": 55         # Half power — ambient fill, not a competing source
+        "color_temp": 4000,  # Matches the desk lamp to keep the room chromatically consistent
+        "brightness": 55,  # Half power — ambient fill, not a competing source
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 4000,      # Matches overhead left
-        "brightness": 55         # Balanced fill across the ceiling
+        "color_temp": 4000,  # Matches overhead left
+        "brightness": 55,  # Balanced fill across the ceiling
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — a low source competes with the desk lamp and creates visual noise
-    }
+        "is_on": False,  # Off — a low source competes with the desk lamp and creates visual noise
+    },
 ]
 
 if __name__ == "__main__":

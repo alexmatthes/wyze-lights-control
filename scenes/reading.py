@@ -19,32 +19,32 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 2900,      # Warm white — easy on the eyes for long sessions
-        "brightness": 100        # Full brightness — you need genuine light on the page
+        "color_temp": 2900,  # Warm white — easy on the eyes for long sessions
+        "brightness": 100,  # Full brightness — you need genuine light on the page
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — creates glare on pages and competes with the desk lamp
+        "is_on": False,  # Off — creates glare on pages and competes with the desk lamp
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — matches overhead left
+        "is_on": False,  # Off — matches overhead left
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 2700,      # Slightly warmer than the desk lamp — recedes into the background
-        "brightness": 25         # Very soft fill — reduces room contrast without drawing the eye
-    }
+        "color_temp": 2700,  # Slightly warmer than the desk lamp — recedes into the background
+        "brightness": 25,  # Very soft fill — reduces room contrast without drawing the eye
+    },
 ]
 
 if __name__ == "__main__":

@@ -16,32 +16,32 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FFB300",       # Deep gold — warm key light, like a tungsten fresnel
-        "brightness": 45         # Moderate — a pool of light, not a floodlight
+        "color": "FFB300",  # Deep gold — warm key light, like a tungsten fresnel
+        "brightness": 45,  # Moderate — a pool of light, not a floodlight
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — overhead sources flatten a room's sense of intimacy
+        "is_on": False,  # Off — overhead sources flatten a room's sense of intimacy
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — matches overhead left
+        "is_on": False,  # Off — matches overhead left
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FF5500",       # Burnt orange — a warm, low wash like practical stage lighting
-        "brightness": 55         # The dominant source in the room; sets the overall mood
-    }
+        "color": "FF5500",  # Burnt orange — a warm, low wash like practical stage lighting
+        "brightness": 55,  # The dominant source in the room; sets the overall mood
+    },
 ]
 
 if __name__ == "__main__":

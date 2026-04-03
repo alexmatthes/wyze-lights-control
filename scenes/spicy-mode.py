@@ -12,36 +12,36 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "B22222",       # Firebrick / deep warm red — blood-rush, kiss-flushed intimacy
-        "brightness": 35         # Moderate glow — close enough to feel personal and heated
+        "color": "B22222",  # Firebrick / deep warm red — blood-rush, kiss-flushed intimacy
+        "brightness": 35,  # Moderate glow — close enough to feel personal and heated
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "4B0082",       # Deep indigo-violet — mysterious, seductive shadow layer
-        "brightness": 12         # Barely there — just enough to give the ceiling a sultry bruise
+        "color": "4B0082",  # Deep indigo-violet — mysterious, seductive shadow layer
+        "brightness": 12,  # Barely there — just enough to give the ceiling a sultry bruise
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "800020",       # Burgundy / oxblood — rich, luxurious, carnal depth
-        "brightness": 12         # Matches the other overhead; creates subtle color tension
+        "color": "800020",  # Burgundy / oxblood — rich, luxurious, carnal depth
+        "brightness": 12,  # Matches the other overhead; creates subtle color tension
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FF8C00",       # Dark amber / torch-like — warmest, most skin-flattering tone
-        "brightness": 28         # Low but golden — spills soft light upward like candle flicker
-    }
+        "color": "FF8C00",  # Dark amber / torch-like — warmest, most skin-flattering tone
+        "brightness": 28,  # Low but golden — spills soft light upward like candle flicker
+    },
 ]
 
 if __name__ == "__main__":

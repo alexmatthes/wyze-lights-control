@@ -17,36 +17,36 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "8B00FF",       # Vivid violet — bridges the blue/magenta clash on the ceiling
-        "brightness": 90         # Bright and punchy near eye level
+        "color": "8B00FF",  # Vivid violet — bridges the blue/magenta clash on the ceiling
+        "brightness": 90,  # Bright and punchy near eye level
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FF0080",       # Hot magenta — aggressive, high-energy pink
-        "brightness": 100        # Full power for maximum color saturation on the walls
+        "color": "FF0080",  # Hot magenta — aggressive, high-energy pink
+        "brightness": 100,  # Full power for maximum color saturation on the walls
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "0033FF",       # Electric blue — direct opponent to the magenta overhead
-        "brightness": 100        # Matched full power to keep the clash even
+        "color": "0033FF",  # Electric blue — direct opponent to the magenta overhead
+        "brightness": 100,  # Matched full power to keep the clash even
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "39FF14",       # Acid green — neon, abrasive, and maximally energizing
-        "brightness": 85         # Very bright low source; bounces up the walls dramatically
-    }
+        "color": "39FF14",  # Acid green — neon, abrasive, and maximally energizing
+        "brightness": 85,  # Very bright low source; bounces up the walls dramatically
+    },
 ]
 
 if __name__ == "__main__":

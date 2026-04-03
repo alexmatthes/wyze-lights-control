@@ -15,30 +15,30 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — too close to your eyes at a desk level
+        "is_on": False,  # Off — too close to your eyes at a desk level
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — overhead light is the worst offender for melatonin suppression
+        "is_on": False,  # Off — overhead light is the worst offender for melatonin suppression
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — matches overhead left
+        "is_on": False,  # Off — matches overhead left
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FF2800",       # Deep ember red — essentially zero blue content
-        "brightness": 18         # Dim enough to be soothing, bright enough to move around safely
-    }
+        "color": "FF2800",  # Deep ember red — essentially zero blue content
+        "brightness": 18,  # Dim enough to be soothing, bright enough to move around safely
+    },
 ]
 
 if __name__ == "__main__":

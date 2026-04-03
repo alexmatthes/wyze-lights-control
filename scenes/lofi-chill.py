@@ -18,32 +18,32 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FF7A00",       # Warm apricot — soft, hazy, like afternoon light through a shade
-        "brightness": 28         # Low — a glow rather than a light source
+        "color": "FF7A00",  # Warm apricot — soft, hazy, like afternoon light through a shade
+        "brightness": 28,  # Low — a glow rather than a light source
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — overheads kill the intimate, low-light chill atmosphere
+        "is_on": False,  # Off — overheads kill the intimate, low-light chill atmosphere
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
-        "is_on": False           # Off — matches overhead left
+        "is_on": False,  # Off — matches overhead left
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color": "FF4500",       # Deep amber — the soul of the scene, warm and enveloping
-        "brightness": 50         # The room's heartbeat; present, but never harsh
-    }
+        "color": "FF4500",  # Deep amber — the soul of the scene, warm and enveloping
+        "brightness": 50,  # The room's heartbeat; present, but never harsh
+    },
 ]
 
 if __name__ == "__main__":

@@ -16,36 +16,36 @@ from wyze_setbulbs import apply_scene
 bulbs_config = [
     {
         "name": "Desk Lamp",
-        "mac": os.getenv('DESK_LAMP_MAC'),
+        "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 6500,      # Crisp daylight — the brightest, most alerting color temperature
-        "brightness": 100        # Full power — no easing in, commit to the morning
+        "color_temp": 6500,  # Crisp daylight — the brightest, most alerting color temperature
+        "brightness": 100,  # Full power — no easing in, commit to the morning
     },
     {
         "name": "Overhead Left",
-        "mac": os.getenv('OVERHEAD_1_MAC'),
+        "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 5500,      # Slightly softer daylight — fills the room evenly
-        "brightness": 100        # Full flood, no shadows to hide in
+        "color_temp": 5500,  # Slightly softer daylight — fills the room evenly
+        "brightness": 100,  # Full flood, no shadows to hide in
     },
     {
         "name": "Overhead Right",
-        "mac": os.getenv('OVERHEAD_2_MAC'),
+        "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 5500,      # Matches overhead left for balanced, shadowless coverage
-        "brightness": 100
+        "color_temp": 5500,  # Matches overhead left for balanced, shadowless coverage
+        "brightness": 100,
     },
     {
         "name": "Floor Lamp",
-        "mac": os.getenv('FLOOR_LAMP_MAC'),
+        "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
         "is_on": True,
-        "color_temp": 5000,      # Warm-daylight fill — lifts the lower half of the room
-        "brightness": 90         # Slightly pulled back so the overheads remain dominant
-    }
+        "color_temp": 5000,  # Warm-daylight fill — lifts the lower half of the room
+        "brightness": 90,  # Slightly pulled back so the overheads remain dominant
+    },
 ]
 
 if __name__ == "__main__":
