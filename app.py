@@ -96,12 +96,14 @@ class SceneSwitcher(QWidget):
                 lambda checked, config=f_module.bulbs_config: apply_scene(config)
             )
 
+            MAX_COLS = 3
             self.layout.addWidget(newButton, rowCount, colCount)
 
-            rowCount += 1
-            if rowCount == 3:
-                rowCount = 0
-                colCount += 1
+            colCount += 1
+
+            if colCount == MAX_COLS:
+                colCount = 0
+                rowCount += 1
 
 
 if __name__ == "__main__":

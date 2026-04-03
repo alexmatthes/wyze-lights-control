@@ -1,7 +1,66 @@
-QMainWindow {
-  background-color: #33373B;
-  }
+/* --- Global Styles --- */
+QMainWindow, QWidget {
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
 
-QWidget {
-  background-color: #33373B;
+/* --- Tab Widget --- */
+QTabWidget::pane {
+    border: 1px solid #3A3A3C;
+    background-color: #252526;
+    border-radius: 6px;
+    margin-top: -1px; /* Overlaps border with tab bar */
+}
+
+QTabBar::tab {
+    background-color: #2D2D30;
+    color: #A0A0A0;
+    padding: 10px 20px;
+    margin-right: 2px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid transparent;
+}
+
+QTabBar::tab:hover {
+    background-color: #3A3A3C;
+    color: #FFFFFF;
+}
+
+QTabBar::tab:selected {
+    background-color: #252526;
+    color: #FFFFFF;
+    border: 1px solid #3A3A3C;
+    border-bottom-color: #252526; /* Blends into the pane */
+    border-top: 3px solid #0A84FF; /* Modern bright blue accent */
+    font-weight: bold;
+}
+
+/* --- Scene Switcher Buttons --- */
+QPushButton {
+    background-color: #333337;
+    color: #F5F5F5;
+    border: 1px solid #454545;
+    border-radius: 8px;
+    padding: 16px 12px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background-color: #3E3E42;
+    border: 1px solid #0A84FF; /* Blue border on hover */
+    color: #FFFFFF;
+}
+
+QPushButton:pressed {
+    background-color: #1C1C1E;
+    border: 1px solid #005BB5;
+    color: #A0A0A0;
+}
+
+QPushButton:focus {
+    outline: none; /* Removes the default dotted outline */
 }
