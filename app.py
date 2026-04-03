@@ -4,7 +4,7 @@ import importlib.util
 from PyQt6.QtCore import QSize, Qt,pyqtSignal as Signal, pyqtSlot as Slot
 from PyQt6.QtWidgets import QApplication, QGridLayout, QMainWindow, QPushButton, QWidget
 from pathlib import Path
-from scenes.wyze_setbulbs import apply_scene
+from wyze_setbulbs import apply_scene
 
 class MainWindow(QMainWindow):
   def __init__(self):
@@ -32,9 +32,12 @@ class MainWindow(QMainWindow):
 
       # Load the module from the spec
       f_module = importlib.util.module_from_spec(module_spec)
+
+      sys.path.append('scenes')
+
       module_spec.loader.exec_module(f_module)
 
-      newButton.clicked.connect(lambda checked, name=sceneName: apply_scene(f_module.bulb_config))
+      newButton.clicked.connect(lambda checked, config=f_module.bulbs_config: apply_scene(config))
 
       layout.addWidget(newButton, rowCount, colCount)
 
