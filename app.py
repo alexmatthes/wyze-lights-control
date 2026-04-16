@@ -70,7 +70,7 @@ class SceneSwitcher(QWidget):
         super().__init__(parent)
 
         # Pass 'self' so the grid layout knows it belongs to SceneSwitcher
-        self.layout = QGridLayout(self)
+        self.grid_layout = QGridLayout(self)
 
         p = Path("/Users/alhar/wyze-lights-control/scenes")
         files = p.glob("*.py")
@@ -97,7 +97,7 @@ class SceneSwitcher(QWidget):
             )
 
             MAX_COLS = 3
-            self.layout.addWidget(newButton, rowCount, colCount)
+            self.grid_layout.addWidget(newButton, rowCount, colCount)
 
             colCount += 1
 
@@ -108,11 +108,12 @@ class SceneSwitcher(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
 
     with open("style.qss", "r") as f:
         _style = f.read()
         app.setStyleSheet(_style)
+
+    window = MainWindow()
+    window.show()
 
     sys.exit(app.exec())
