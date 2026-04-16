@@ -1,8 +1,17 @@
 import os
 import re
 from dotenv import load_dotenv
+import sys
+from pathlib import Path
+from dotenv import load_dotenv
 
-load_dotenv()
+if getattr(sys, "frozen", False):
+    # Running as bundled exe — look for .env next to the exe
+    env_path = Path(sys.executable).parent / ".env"
+else:
+    # Running as script — look in project folder
+    env_path = Path(__file__).parent / ".env"
+load_dotenv(env_path)
 
 from wyze_sdk import Client
 from concurrent.futures import ThreadPoolExecutor, as_completed

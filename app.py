@@ -13,18 +13,30 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from PyQt6.QtGui import QIcon
 
 from wyze_setbulbs import apply_scene
+
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller bundle."""
+    if hasattr(sys, "_MEIPASS"):
+        # Running as bundled exe — PyInstaller extracts to this temp dir
+        base_path = Path(sys._MEIPASS)
+    else:
+        # Running as normal script
+        base_path = Path(__file__).parent
+    return base_path / relative_path
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.title = "Bedroom Lighting Switcher"
-        self.setWindowTitle(self.title)
-
-        # Initialize the tab widget and set it as central
         self.tab_widget = MyTabWidget(self)
+
+        self.setWindowTitle(self.title)
+        self.setWindowIcon(QIcon(str(resource_path("icon.ico"))))
         self.setCentralWidget(self.tab_widget)
 
 
@@ -72,7 +84,7 @@ class SceneSwitcher(QWidget):
         # Pass 'self' so the grid layout knows it belongs to SceneSwitcher
         self.grid_layout = QGridLayout(self)
 
-        p = Path("/Users/alhar/wyze-lights-control/scenes")
+        p = resource_path("scenes")
         files = p.glob("*.py")
 
         rowCount = 0
@@ -109,7 +121,7 @@ class SceneSwitcher(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    with open("style.qss", "r") as f:
+    with open(resource_path("style.qss"), "r") as f:
         _style = f.read()
         app.setStyleSheet(_style)
 
