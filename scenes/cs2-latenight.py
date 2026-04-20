@@ -1,34 +1,53 @@
 import os
 from wyze_setbulbs import apply_scene
 
+# SCENE: CS2 / Late-Night Competitive
+#
+# Lighting philosophy: the LAN-center look — cold, quiet, forward-focused.
+#
+# Competitive play at 1 AM asks for sharpened attention without the
+# circadian hit of bright cool-white light. The answer is cool chroma
+# instead of cool color temperature: a deep, saturated blue palette at
+# low brightness reads as "alert" to the eye without flooding the retina
+# with the melatonin-suppressing daylight white that would wreck sleep
+# an hour later. A pale cyan bias behind the screen reduces contrast
+# fatigue during long rounds. The overheads drop to a near-black icy
+# navy — stadium-style peripheral color, not illumination. The floor
+# lamp anchors the "pit" in cobalt, a single saturated low source that
+# pulls the room's focus forward onto the monitor.
+
 bulbs_config = [
     {
         "name": "Desk Lamp",
         "mac": os.getenv("DESK_LAMP_MAC"),
         "model": "WLPA19C",
-        "color": "00FFFF",  # Cyan - A cool, bright accent near your screen
-        "brightness": 35,  # Kept moderate to avoid screen glare
+        "is_on": True,
+        "color": "80E8FF",  # Pale cyan — bias light tuned to a cool monitor white point
+        "brightness": 28,   # Bias-level; any higher and it reflects onto the screen
     },
     {
         "name": "Overhead Left",
         "mac": os.getenv("OVERHEAD_1_MAC"),
         "model": "WLPA19C",
-        "color": "FF4500",  # Deep Indigo - Very dark blue/purple
-        "brightness": 10,  # Very dim for that moody overhead atmosphere
+        "is_on": True,
+        "color": "001A66",  # Icy navy — a ceiling color, not a light source
+        "brightness": 8,    # Near-black; peripheral color only
     },
     {
         "name": "Overhead Right",
         "mac": os.getenv("OVERHEAD_2_MAC"),
         "model": "WLPA19C",
-        "color": "FF4500",  # Dark Violet - Slightly warmer deep purple
-        "brightness": 10,  # Very dim to match the other overhead
+        "is_on": True,
+        "color": "001A66",  # Matched to overhead left for balanced ceiling coverage
+        "brightness": 8,
     },
     {
         "name": "Floor Lamp",
         "mac": os.getenv("FLOOR_LAMP_MAC"),
         "model": "WLPA19C",
-        "color": "0000FF",  # Rose/Magenta - A warm, vibrant wash of color
-        "brightness": 45,  # Bright enough to light the corner of the room softly
+        "is_on": True,
+        "color": "0033FF",  # Cobalt — the saturated anchor; uplights the rear wall
+        "brightness": 35,   # Moderate; builds the pit effect without pulling the eye back
     },
 ]
 
