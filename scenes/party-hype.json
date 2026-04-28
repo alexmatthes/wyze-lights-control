@@ -1,0 +1,10 @@
+{
+    "name": "Party Hype",
+    "description": "Nightclub color contrast — split complementaries at war. Opposing colors fight each other visually, producing electric, unstable energy that reads as excitement. Everything at high brightness, no apologies.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true, "color": "8B00FF", "brightness": 90  },
+        "overhead_left":  { "is_on": true, "color": "FF0080", "brightness": 100 },
+        "overhead_right": { "is_on": true, "color": "0033FF", "brightness": 100 },
+        "floor_lamp":     { "is_on": true, "color": "39FF14", "brightness": 85  }
+    }
+}

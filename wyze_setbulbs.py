@@ -1,9 +1,9 @@
 import os
 import re
-from dotenv import load_dotenv
 import sys
 from pathlib import Path
 from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 if getattr(sys, "frozen", False):
     # Running as bundled exe — look for .env next to the exe
@@ -14,7 +14,15 @@ else:
 load_dotenv(env_path)
 
 from wyze_sdk import Client
-from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# Static mapping of logical bulb names to physical hardware.
+# MAC addresses come from the .env file so they never live in scene data.
+BULB_HARDWARE = {
+    "desk_lamp": {"mac": os.getenv("DESK_LAMP_MAC"), "model": "WLPA19C"},
+    "overhead_left": {"mac": os.getenv("OVERHEAD_1_MAC"), "model": "WLPA19C"},
+    "overhead_right": {"mac": os.getenv("OVERHEAD_2_MAC"), "model": "WLPA19C"},
+    "floor_lamp": {"mac": os.getenv("FLOOR_LAMP_MAC"), "model": "WLPA19C"},
+}
 
 
 def get_wyze_client():
@@ -28,67 +36,89 @@ def get_wyze_client():
     return Client(token=login_response["access_token"])
 
 
-def validate_bulb_config(bulb):
-    """Raises ValueError if config has obvious problems."""
-    if "color" in bulb:
-        if not re.fullmatch(r"[0-9A-Fa-f]{6}", bulb["color"]):
+def validate_bulb_config(bulb_key, config):
+    """Raises ValueError if a bulb's scene config has obvious problems."""
+    if "color" in config:
+        if not re.fullmatch(r"[0-9A-Fa-f]{6}", config["color"]):
             raise ValueError(
-                f"{bulb['name']}: invalid hex color '{bulb['color']}' (use 6-char hex, no '#')"
+                f"{bulb_key}: invalid hex color '{config['color']}' (use 6-char hex, no '#')"
             )
-    if "brightness" in bulb:
-        if not (1 <= bulb["brightness"] <= 100):
+    if "brightness" in config:
+        if not (1 <= config["brightness"] <= 100):
             raise ValueError(
-                f"{bulb['name']}: brightness must be 1–100, got {bulb['brightness']}"
+                f"{bulb_key}: brightness must be 1–100, got {config['brightness']}"
             )
 
 
-def apply_single_bulb(client, bulb):
-    """Applies config to one bulb. Returns (name, success, error)."""
-    mac, model, name = bulb["mac"], bulb["model"], bulb["name"]
+def apply_single_bulb(client, bulb_key, scene_config):
+    """Applies a single bulb's scene config using the hardware map. Returns (key, success, error)."""
+    hardware = BULB_HARDWARE.get(bulb_key)
+    if hardware is None:
+        return (
+            bulb_key,
+            False,
+            f"Unknown bulb key '{bulb_key}' — not in BULB_HARDWARE",
+        )
+
+    mac = hardware["mac"]
+    model = hardware["model"]
+
     try:
-        validate_bulb_config(bulb)
-        if not bulb.get("is_on", True):
+        validate_bulb_config(bulb_key, scene_config)
+
+        if not scene_config.get("is_on", True):
             client.bulbs.turn_off(device_mac=mac, device_model=model)
-            return (name, True, None)
+            return (bulb_key, True, None)
 
         client.bulbs.turn_on(device_mac=mac, device_model=model)
-        if "color" in bulb:
+
+        if "color" in scene_config:
             client.bulbs.set_color(
-                device_mac=mac, device_model=model, color=bulb["color"]
+                device_mac=mac, device_model=model, color=scene_config["color"]
             )
-        elif "color_temp" in bulb:
+        elif "color_temp" in scene_config:
             client.bulbs.set_color_temp(
-                device_mac=mac, device_model=model, color_temp=bulb["color_temp"]
+                device_mac=mac,
+                device_model=model,
+                color_temp=scene_config["color_temp"],
             )
-        if "brightness" in bulb:
+
+        if "brightness" in scene_config:
             client.bulbs.set_brightness(
-                device_mac=mac, device_model=model, brightness=bulb["brightness"]
+                device_mac=mac,
+                device_model=model,
+                brightness=scene_config["brightness"],
             )
-        return (name, True, None)
+
+        return (bulb_key, True, None)
+
     except Exception as e:
-        return (name, False, str(e))
+        return (bulb_key, False, str(e))
 
 
-def apply_scene(bulbs_config):
-    """Takes a list of bulb configurations and applies them in parallel."""
-    client = get_wyze_client()
+def apply_scene(client, bulbs: dict):
+    """
+    Takes a pre-authenticated Wyze client and a dict of { bulb_key: scene_config },
+    and applies them in parallel. The client is created once at app startup and
+    reused across all button presses to avoid re-authenticating every time.
+    """
     print("Applying settings to bulbs...")
 
     results = []
     with ThreadPoolExecutor() as executor:
         futures = {
-            executor.submit(apply_single_bulb, client, bulb): bulb
-            for bulb in bulbs_config
+            executor.submit(apply_single_bulb, client, bulb_key, scene_config): bulb_key
+            for bulb_key, scene_config in bulbs.items()
         }
         for future in as_completed(futures):
             results.append(future.result())
 
-    succeeded = [name for name, ok, _ in results if ok]
-    failed = [(name, err) for name, ok, err in results if not ok]
+    succeeded = [key for key, ok, _ in results if ok]
+    failed = [(key, err) for key, ok, err in results if not ok]
 
-    for name in succeeded:
-        print(f"✓ {name}")
-    for name, err in failed:
-        print(f"✗ {name}: {err}")
+    for key in succeeded:
+        print(f"✓ {key}")
+    for key, err in failed:
+        print(f"✗ {key}: {err}")
 
-    print(f"\nDone — {len(succeeded)}/{len(bulbs_config)} bulbs updated successfully.")
+    print(f"\nDone — {len(succeeded)}/{len(bulbs)} bulbs updated successfully.")

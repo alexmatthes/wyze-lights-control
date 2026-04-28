@@ -1,0 +1,10 @@
+{
+    "name": "Minecraft Cave",
+    "description": "Torch-and-moss spelunking, rendered in real light. The desk lamp is the torch held out in front — close, warm gold. The floor lamp is the cave's ambient phenomenon: a barely-there mossy green uplight. Above the torch, only stone.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color": "FFB000", "brightness": 38 },
+        "overhead_left":  { "is_on": false },
+        "overhead_right": { "is_on": false },
+        "floor_lamp":     { "is_on": true,  "color": "0F6020", "brightness": 15 }
+    }
+}

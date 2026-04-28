@@ -1,0 +1,10 @@
+{
+    "name": "Music Listening",
+    "description": "The aesthetic of a small, intimate live venue — a jazz club or vinyl listening bar. Overheads off. A warm amber stage wash from the floor lamp evokes footlights. The desk lamp is a single focused special in deep gold.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color": "FFB300", "brightness": 45 },
+        "overhead_left":  { "is_on": false },
+        "overhead_right": { "is_on": false },
+        "floor_lamp":     { "is_on": true,  "color": "FF5500", "brightness": 55 }
+    }
+}

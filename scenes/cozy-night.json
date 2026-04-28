@@ -1,0 +1,10 @@
+{
+    "name": "Cozy Night",
+    "description": "The hearth, relocated to a bedroom. Overheads go fully dark. The floor lamp takes the role of the hearth — an ember-red uplight below eye level. The desk lamp becomes the candle on the table.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color": "FF9A30", "brightness": 22 },
+        "overhead_left":  { "is_on": false },
+        "overhead_right": { "is_on": false },
+        "floor_lamp":     { "is_on": true,  "color": "FF3000", "brightness": 20 }
+    }
+}

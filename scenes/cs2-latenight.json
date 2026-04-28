@@ -1,0 +1,10 @@
+{
+    "name": "CS2 Latenight",
+    "description": "The LAN-center look — cold, quiet, forward-focused. Saturated blue palette at low brightness reads as alert without the melatonin-suppressing hit of cool white. Pale cyan bias behind the screen reduces contrast fatigue.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color": "80E8FF", "brightness": 28 },
+        "overhead_left":  { "is_on": true,  "color": "001A66", "brightness": 8  },
+        "overhead_right": { "is_on": true,  "color": "001A66", "brightness": 8  },
+        "floor_lamp":     { "is_on": true,  "color": "0033FF", "brightness": 35 }
+    }
+}

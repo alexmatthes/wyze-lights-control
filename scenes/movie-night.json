@@ -1,0 +1,10 @@
+{
+    "name": "Movie Night",
+    "description": "Replicate the feel of a real cinema. Overheads cut completely. The desk lamp gets a deep amber bias light — a classic cinematographer's trick that reduces eye strain. The floor lamp is your aisle light: warm, extremely dim.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color": "FF4500", "brightness": 12 },
+        "overhead_left":  { "is_on": false },
+        "overhead_right": { "is_on": false },
+        "floor_lamp":     { "is_on": true,  "color": "FF2200", "brightness": 8  }
+    }
+}

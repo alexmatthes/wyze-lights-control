@@ -1,0 +1,10 @@
+{
+    "name": "Daytime Work Warm",
+    "description": "Afternoon office, not morning office. 2700K reduces blue-light exposure before sleep and opens divergent thinking for creative work. The desk lamp is the hero; the floor lamp provides matched-temperature fill.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color_temp": 2700, "brightness": 100 },
+        "overhead_left":  { "is_on": false },
+        "overhead_right": { "is_on": false },
+        "floor_lamp":     { "is_on": true,  "color_temp": 2700, "brightness": 80  }
+    }
+}

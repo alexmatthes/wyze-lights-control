@@ -1,12 +1,11 @@
 import sys
-import importlib.util
+import json
 from pathlib import Path
 
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
     QGridLayout,
-    QLabel,
     QMainWindow,
     QPushButton,
     QTabWidget,
@@ -15,7 +14,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtGui import QIcon
 
-from wyze_setbulbs import apply_scene
+from wyze_setbulbs import get_wyze_client, apply_scene
 
 
 def resource_path(relative_path):
@@ -44,78 +43,56 @@ class MyTabWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        # 1. Create the master layout for this entire widget
         main_layout = QVBoxLayout(self)
 
-        # 2. Initialize the tab container and the individual tab pages
         self.tabs = QTabWidget()
         self.tab1 = QWidget()
         self.tab2 = QWidget()
 
-        # 3. Add the pages to the tab container
         self.tabs.addTab(self.tab1, "Scene Switcher")
         self.tabs.addTab(self.tab2, "Scene Creator")
 
-        # --- Setting up Tab 1 ---
+        # Authenticate once at startup so button presses are near-instant
+        self.client = get_wyze_client()
 
-        # Create a layout specifically for tab 1
+        # --- Tab 1: Scene Switcher ---
         tab1_layout = QVBoxLayout()
-
-        # Instantiate the widget (build the house from the blueprint)
-        # We pass self.tab1 so the SceneSwitcher knows it lives inside tab1
-        scene_switcher_widget = SceneSwitcher(self.tab1)
-
-        # Add the instantiated widget to tab 1's layout
+        scene_switcher_widget = SceneSwitcher(self.tab1, self.client)
         tab1_layout.addWidget(scene_switcher_widget)
-
-        # Finally, apply the layout to tab 1
         self.tab1.setLayout(tab1_layout)
 
-        # --- Finishing up ---
-
-        # Add the whole tab container to the master layout
         main_layout.addWidget(self.tabs)
 
 
 class SceneSwitcher(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, client=None):
         super().__init__(parent)
-
-        # Pass 'self' so the grid layout knows it belongs to SceneSwitcher
+        self.client = client
         self.grid_layout = QGridLayout(self)
+        self._load_scenes()
 
-        p = resource_path("scenes")
-        files = p.glob("*.py")
+    def _load_scenes(self):
+        """Reads all .json files from the scenes folder and builds the button grid."""
+        scenes_path = resource_path("scenes")
+        files = sorted(scenes_path.glob("*.json"))
 
-        rowCount = 0
-        colCount = 0
-
-        sys.path.append("scenes")
+        row, col = 0, 0
+        MAX_COLS = 3
 
         for f in files:
-            sceneName = f.name
-            sceneName = sceneName.replace(".py", "").replace("-", " ").title()
+            with open(f, "r") as fh:
+                scene = json.load(fh)
 
-            newButton = QPushButton(sceneName)
-
-            # Create a spec for the module
-            module_spec = importlib.util.spec_from_file_location(f.name, f)
-            # Load the module from the spec
-            f_module = importlib.util.module_from_spec(module_spec)
-            module_spec.loader.exec_module(f_module)
-
-            newButton.clicked.connect(
-                lambda checked, config=f_module.bulbs_config: apply_scene(config)
+            button = QPushButton(scene["name"])
+            button.clicked.connect(
+                lambda checked, bulbs=scene["bulbs"]: apply_scene(self.client, bulbs)
             )
 
-            MAX_COLS = 3
-            self.grid_layout.addWidget(newButton, rowCount, colCount)
-
-            colCount += 1
-
-            if colCount == MAX_COLS:
-                colCount = 0
-                rowCount += 1
+            self.grid_layout.addWidget(button, row, col)
+            col += 1
+            if col == MAX_COLS:
+                col = 0
+                row += 1
 
 
 if __name__ == "__main__":

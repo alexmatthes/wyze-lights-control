@@ -1,0 +1,10 @@
+{
+    "name": "Lofi Chill",
+    "description": "The golden hour that never ends. Late afternoon sun filtered through a window — practicals and pools. The floor lamp is the dominant ambient glow. The desk lamp burns a dim, hazy apricot. Overheads off.",
+    "bulbs": {
+        "desk_lamp":      { "is_on": true,  "color": "FF7A00", "brightness": 28 },
+        "overhead_left":  { "is_on": false },
+        "overhead_right": { "is_on": false },
+        "floor_lamp":     { "is_on": true,  "color": "FF4500", "brightness": 50 }
+    }
+}
