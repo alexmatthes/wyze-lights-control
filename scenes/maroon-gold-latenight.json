@@ -1,0 +1,26 @@
+{
+  "name": "Maroon & Gold",
+  "description": "Prestige-cable color grade, transposed into the room. Deep burgundy bias behind the screen \u2014 red minus the alarm \u2014 with a warm-gold pool from the corner anchoring everything like a hotel bar lamp. Overheads dropped to ember red so the screen stays dominant. Cozy enough to sink into, saturated enough to feel like something's happening.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color": "FF003B",
+      "brightness": 18
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color": "FF2000",
+      "brightness": 10
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color": "FF2000",
+      "brightness": 10
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color": "FFB51D",
+      "brightness": 42
+    }
+  }
+}

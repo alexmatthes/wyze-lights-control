@@ -1,10 +1,22 @@
 {
-    "name": "Daytime Work",
-    "description": "Horizon-daylight balance — the modern office, done well. 5000K is the color temperature of direct sun a few hours after sunrise: alert and color-accurate without the clinical edge of 6500K.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": true,  "color_temp": 5000, "brightness": 100 },
-        "overhead_left":  { "is_on": false },
-        "overhead_right": { "is_on": false },
-        "floor_lamp":     { "is_on": true,  "color_temp": 5000, "brightness": 80  }
+  "name": "Daytime Work",
+  "description": "Horizon-daylight balance \u2014 the modern office, done well. 5000K is the color temperature of direct sun a few hours after sunrise: alert and color-accurate without the clinical edge of 6500K.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 5000,
+      "brightness": 100
+    },
+    "overhead_left": {
+      "is_on": false
+    },
+    "overhead_right": {
+      "is_on": false
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color_temp": 5000,
+      "brightness": 80
     }
+  }
 }

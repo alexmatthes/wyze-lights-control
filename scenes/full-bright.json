@@ -1,0 +1,26 @@
+{
+  "name": "Full Bright",
+  "description": "Utility light, no mood. Neutral 4000K at full output everywhere, overheads included. For cleaning, finding the thing you dropped, or tracing a cable behind the desk. Not meant to be pleasant.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 100
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 100
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 100
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 100
+    }
+  }
+}

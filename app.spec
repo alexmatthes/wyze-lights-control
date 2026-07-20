@@ -5,7 +5,6 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[
-        ('scenes', 'scenes'),      # (source, destination inside bundle)
         ('style.qss', '.'),        # '.' means bundle root
         ('icon.ico', '.'),
     ],

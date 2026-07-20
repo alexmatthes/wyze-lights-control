@@ -1,10 +1,22 @@
 {
-    "name": "Reading",
-    "description": "A single warm key with soft surround fill — the well-designed reading nook. 2700-3000K is the sweet spot: easy on the eyes over hours, cool enough to keep you alert. Overheads off to preserve directional quality.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": true,  "color_temp": 2900, "brightness": 100 },
-        "overhead_left":  { "is_on": false },
-        "overhead_right": { "is_on": false },
-        "floor_lamp":     { "is_on": true,  "color_temp": 2700, "brightness": 25  }
+  "name": "Reading",
+  "description": "A single warm key with soft surround fill \u2014 the well-designed reading nook. 2700-3000K is the sweet spot: easy on the eyes over hours, cool enough to keep you alert. Overheads off to preserve directional quality.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 2900,
+      "brightness": 100
+    },
+    "overhead_left": {
+      "is_on": false
+    },
+    "overhead_right": {
+      "is_on": false
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color_temp": 2700,
+      "brightness": 25
     }
+  }
 }

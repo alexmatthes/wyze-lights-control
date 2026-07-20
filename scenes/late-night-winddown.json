@@ -1,10 +1,20 @@
 {
-    "name": "Late Night Winddown",
-    "description": "Trick your brain into thinking it's dusk. Strips out all blue entirely using only the deepest warm amber tones at very low brightness. Only the floor lamp is on — low sources read as fire, not sun.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": false },
-        "overhead_left":  { "is_on": false },
-        "overhead_right": { "is_on": false },
-        "floor_lamp":     { "is_on": true,  "color": "FF2800", "brightness": 18 }
+  "name": "Late Night Winddown",
+  "description": "Trick your brain into thinking it's dusk. Strips out blue entirely \u2014 deep red-orange at very low brightness, the warmest output the bulb can produce. Only the floor lamp is on \u2014 low sources read as fire, not sun.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": false
+    },
+    "overhead_left": {
+      "is_on": false
+    },
+    "overhead_right": {
+      "is_on": false
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color": "FF2800",
+      "brightness": 18
     }
+  }
 }

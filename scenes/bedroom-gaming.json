@@ -1,10 +1,26 @@
 {
-    "name": "Bedroom Gaming",
-    "description": "Bias-light the screen, recess the room. Cool cyan next to the monitor reduces eye strain over long sessions. Overheads drop to a deep indigo whisper. The floor lamp anchors the room with a single magenta kicker.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": true,  "color": "00E0FF", "brightness": 30 },
-        "overhead_left":  { "is_on": true,  "color": "2A0060", "brightness": 12 },
-        "overhead_right": { "is_on": true,  "color": "2A0060", "brightness": 12 },
-        "floor_lamp":     { "is_on": true,  "color": "FF1A80", "brightness": 40 }
+  "name": "Bedroom Gaming",
+  "description": "Bias-light the screen, recess the room. Cool cyan next to the monitor reduces eye strain over long sessions. Overheads drop to a deep indigo whisper. The floor lamp anchors the room with a single magenta kicker.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color": "00E0FF",
+      "brightness": 30
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color": "7000FF",
+      "brightness": 12
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color": "7000FF",
+      "brightness": 12
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color": "FF1A80",
+      "brightness": 40
     }
+  }
 }

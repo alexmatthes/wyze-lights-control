@@ -1,10 +1,26 @@
 {
-    "name": "Spicy Mode",
-    "description": "Warm blood-rush tones that make pupils dilate. Deep rose-red and burgundy bathe the room in intimate heat, while soft amber/gold mimics candlelight. Everything dim, slow, inviting.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": true, "color": "B22222", "brightness": 35 },
-        "overhead_left":  { "is_on": true, "color": "4B0082", "brightness": 12 },
-        "overhead_right": { "is_on": true, "color": "800020", "brightness": 12 },
-        "floor_lamp":     { "is_on": true, "color": "FF8C00", "brightness": 28 }
+  "name": "Spicy Mode",
+  "description": "Warm blood-rush tones that make pupils dilate. Deep rose-red and burgundy bathe the room in intimate heat, while soft amber/gold mimics candlelight. Everything dim, slow, inviting.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color": "FF3131",
+      "brightness": 35
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color": "9300FF",
+      "brightness": 12
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color": "FF0040",
+      "brightness": 12
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color": "FF8C00",
+      "brightness": 28
     }
+  }
 }

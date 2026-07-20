@@ -1,10 +1,26 @@
 {
-    "name": "Morning Wake Up",
-    "description": "Simulate a bright, clear morning sky. High-intensity cool-white light signals noon sun to your circadian rhythm, rapidly suppressing residual melatonin. Everything on, everything bright. You'll feel it within minutes.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": true, "color_temp": 6500, "brightness": 100 },
-        "overhead_left":  { "is_on": true, "color_temp": 5500, "brightness": 100 },
-        "overhead_right": { "is_on": true, "color_temp": 5500, "brightness": 100 },
-        "floor_lamp":     { "is_on": true, "color_temp": 5000, "brightness": 90  }
+  "name": "Morning Wake Up",
+  "description": "Simulate a bright, clear morning sky. High-intensity cool-white light signals noon sun to your circadian rhythm, rapidly suppressing residual melatonin. Everything on, everything bright. You'll feel it within minutes.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 6500,
+      "brightness": 100
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color_temp": 5500,
+      "brightness": 100
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color_temp": 5500,
+      "brightness": 100
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color_temp": 5000,
+      "brightness": 90
     }
+  }
 }

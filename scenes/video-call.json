@@ -1,0 +1,22 @@
+{
+  "name": "Video Call",
+  "description": "Lights your face, not the room. The desk lamp is the key at full output; overheads stay off so you aren't lit from above or backlit into silhouette. The floor lamp is a matched-temperature fill to soften the shadow side \u2014 same 5000K throughout, since mixed color temperatures read as a color cast on camera.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 5000,
+      "brightness": 100
+    },
+    "overhead_left": {
+      "is_on": false
+    },
+    "overhead_right": {
+      "is_on": false
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color_temp": 5000,
+      "brightness": 30
+    }
+  }
+}

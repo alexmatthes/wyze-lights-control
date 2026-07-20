@@ -1,0 +1,26 @@
+{
+  "name": "Low Sensory",
+  "description": "Minimum stimulation. Uniform warm white at low output from every fixture \u2014 no color, no bright spots, no contrast between sources for the eye to work at. For headaches, migraines, or a sick day.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 2700,
+      "brightness": 15
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color_temp": 2700,
+      "brightness": 15
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color_temp": 2700,
+      "brightness": 15
+    },
+    "floor_lamp": {
+      "is_on": true,
+      "color_temp": 2700,
+      "brightness": 15
+    }
+  }
+}

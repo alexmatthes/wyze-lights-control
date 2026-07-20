@@ -28,6 +28,17 @@ def resource_path(relative_path):
     return base_path / relative_path
 
 
+def external_path(relative_path):
+    """Get absolute path to external resource, right next to the executable or script."""
+    if getattr(sys, "frozen", False):
+        # Running as bundled exe - get the folder containing the actual .exe
+        base_path = Path(sys.executable).parent
+    else:
+        # Running as normal script
+        base_path = Path(__file__).parent
+    return base_path / relative_path
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -73,7 +84,15 @@ class SceneSwitcher(QWidget):
 
     def _load_scenes(self):
         """Reads all .json files from the scenes folder and builds the button grid."""
-        scenes_path = resource_path("scenes")
+
+        # Use the new external_path function instead of resource_path
+        scenes_path = external_path("scenes")
+
+        # Prevent crashes if the scenes folder is missing
+        if not scenes_path.exists():
+            print(f"Scenes folder not found at {scenes_path}")
+            return
+
         files = sorted(scenes_path.glob("*.json"))
 
         row, col = 0, 0

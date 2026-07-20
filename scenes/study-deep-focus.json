@@ -1,10 +1,24 @@
 {
-    "name": "Study Deep Focus",
-    "description": "A single clean key light with neutral fill. 4000K neutral white sits in the sweet spot between alerting and comfortable. The desk lamp is the hero; overheads provide soft fill at reduced brightness so the desk remains dominant.",
-    "bulbs": {
-        "desk_lamp":      { "is_on": true,  "color_temp": 4000, "brightness": 100 },
-        "overhead_left":  { "is_on": true,  "color_temp": 4000, "brightness": 55  },
-        "overhead_right": { "is_on": true,  "color_temp": 4000, "brightness": 55  },
-        "floor_lamp":     { "is_on": false }
+  "name": "Study Deep Focus",
+  "description": "A single clean key light with neutral fill. 4000K neutral white sits in the sweet spot between alerting and comfortable. The desk lamp is the hero; overheads provide soft fill at reduced brightness so the desk remains dominant.",
+  "bulbs": {
+    "desk_lamp": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 100
+    },
+    "overhead_left": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 55
+    },
+    "overhead_right": {
+      "is_on": true,
+      "color_temp": 4000,
+      "brightness": 55
+    },
+    "floor_lamp": {
+      "is_on": false
     }
+  }
 }
