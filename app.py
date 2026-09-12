@@ -104,7 +104,7 @@ class SceneSwitcher(QWidget):
 
             button = QPushButton(scene["name"])
             button.clicked.connect(
-                lambda checked, bulbs=scene["bulbs"]: apply_scene(self.client, bulbs)
+                lambda checked, scene=scene: apply_scene(self.client, scene)
             )
 
             self.grid_layout.addWidget(button, row, col)

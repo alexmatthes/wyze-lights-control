@@ -22,6 +22,14 @@ BULB_HARDWARE = {
     "overhead_left": {"mac": os.getenv("OVERHEAD_1_MAC"), "model": "WLPA19C"},
     "overhead_right": {"mac": os.getenv("OVERHEAD_2_MAC"), "model": "WLPA19C"},
     "floor_lamp": {"mac": os.getenv("FLOOR_LAMP_MAC"), "model": "WLPA19C"},
+    # Add new bulbs here once list_devices.py confirms their mac/model, e.g.:
+    # "outdoor_porch": {"mac": os.getenv("OUTDOOR_PORCH_MAC"), "model": "WLPA19C"},
+}
+
+# Static mapping of logical plug names to physical hardware.
+# Plugs only support on/off — no color or brightness.
+PLUG_HARDWARE = {
+    # "outdoor_string_lights": {"mac": os.getenv("OUTDOOR_PLUG_1_MAC"), "model": "WLPPO"},
 }
 
 
@@ -96,13 +104,42 @@ def apply_single_bulb(client, bulb_key, scene_config):
         return (bulb_key, False, str(e))
 
 
-def apply_scene(client, bulbs: dict):
+def apply_single_plug(client, plug_key, scene_config):
+    """Applies a single plug's scene config using the hardware map. Returns (key, success, error)."""
+    hardware = PLUG_HARDWARE.get(plug_key)
+    if hardware is None:
+        return (
+            plug_key,
+            False,
+            f"Unknown plug key '{plug_key}' — not in PLUG_HARDWARE",
+        )
+
+    mac = hardware["mac"]
+    model = hardware["model"]
+
+    try:
+        if scene_config.get("is_on", True):
+            client.plugs.turn_on(device_mac=mac, device_model=model)
+        else:
+            client.plugs.turn_off(device_mac=mac, device_model=model)
+
+        return (plug_key, True, None)
+
+    except Exception as e:
+        return (plug_key, False, str(e))
+
+
+def apply_scene(client, scene: dict):
     """
-    Takes a pre-authenticated Wyze client and a dict of { bulb_key: scene_config },
-    and applies them in parallel. The client is created once at app startup and
-    reused across all button presses to avoid re-authenticating every time.
+    Takes a pre-authenticated Wyze client and a scene dict with "bulbs" and/or
+    "plugs" keys ({ device_key: scene_config }), and applies them all in
+    parallel. The client is created once at app startup and reused across all
+    button presses to avoid re-authenticating every time.
     """
-    print("Applying settings to bulbs...")
+    print("Applying scene...")
+
+    bulbs = scene.get("bulbs", {})
+    plugs = scene.get("plugs", {})
 
     results = []
     with ThreadPoolExecutor() as executor:
@@ -110,6 +147,10 @@ def apply_scene(client, bulbs: dict):
             executor.submit(apply_single_bulb, client, bulb_key, scene_config): bulb_key
             for bulb_key, scene_config in bulbs.items()
         }
+        futures.update({
+            executor.submit(apply_single_plug, client, plug_key, scene_config): plug_key
+            for plug_key, scene_config in plugs.items()
+        })
         for future in as_completed(futures):
             results.append(future.result())
 
@@ -121,4 +162,5 @@ def apply_scene(client, bulbs: dict):
     for key, err in failed:
         print(f"✗ {key}: {err}")
 
-    print(f"\nDone — {len(succeeded)}/{len(bulbs)} bulbs updated successfully.")
+    total = len(bulbs) + len(plugs)
+    print(f"\nDone — {len(succeeded)}/{total} devices updated successfully.")
