@@ -1,0 +1,32 @@
+{
+    "name": "OSU Gameday",
+    "description": "Scarlet and gray for Ohio State gameday, split across the two outdoor fixtures so the pairing reads at a glance from the street rather than blending into one wash. Both bulbs run at full brightness since this is meant to be seen outdoors in daylight or against porch light, not for ambience. String lights just switch on as a plain accent.",
+    "category": "outdoor",
+    "bulbs": {
+        "front_door_left": {
+            "is_on": true,
+            "color": "BB0000",
+            "brightness": 100
+        },
+        "front_door_right": {
+            "is_on": true,
+            "color": "666666",
+            "brightness": 100
+        },
+        "garage_left": {
+            "is_on": true,
+            "color": "666666",
+            "brightness": 100
+        },
+        "garage_right": {
+            "is_on": true,
+            "color": "BB0000",
+            "brightness": 100
+        }
+    },
+    "plugs": {
+        "string_lights": {
+            "is_on": true
+        }
+    }
+}

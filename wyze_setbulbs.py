@@ -22,14 +22,25 @@ BULB_HARDWARE = {
     "overhead_left": {"mac": os.getenv("OVERHEAD_1_MAC"), "model": "WLPA19C"},
     "overhead_right": {"mac": os.getenv("OVERHEAD_2_MAC"), "model": "WLPA19C"},
     "floor_lamp": {"mac": os.getenv("FLOOR_LAMP_MAC"), "model": "WLPA19C"},
-    # Add new bulbs here once list_devices.py confirms their mac/model, e.g.:
-    # "outdoor_porch": {"mac": os.getenv("OUTDOOR_PORCH_MAC"), "model": "WLPA19C"},
+    "front_door_left": {"mac": os.getenv("FRONT_DOOR_BULB_L_MAC"), "model": "HL_A19C2"},
+    "front_door_right": {"mac": os.getenv("FRONT_DOOR_BULB_R_MAC"), "model": "HL_A19C2"},
+    "garage_left": {"mac": os.getenv("GARAGE_BULB_L_MAC"), "model": "HL_A19C2"},
+    "garage_right": {"mac": os.getenv("GARAGE_BULB_R_MAC"), "model": "HL_A19C2"},
 }
 
 # Static mapping of logical plug names to physical hardware.
 # Plugs only support on/off — no color or brightness.
+# Outdoor plug outlets use model "WLPPO-SUB" and their "-000N" sub-device mac
+# (not the WLPPO base station mac, which isn't individually switchable).
 PLUG_HARDWARE = {
-    # "outdoor_string_lights": {"mac": os.getenv("OUTDOOR_PLUG_1_MAC"), "model": "WLPPO"},
+    "backyard_1": {"mac": os.getenv("BACKYARD_PLUG_1_MAC"), "model": "WLPPO-SUB"},
+    "backyard_2": {"mac": os.getenv("BACKYARD_PLUG_2_MAC"), "model": "WLPPO-SUB"},
+    "string_lights": {"mac": os.getenv("STRING_LIGHTS_PLUG_MAC"), "model": "WLPPO-SUB"},
+    "spotlights": {"mac": os.getenv("SPOTLIGHTS_PLUG_MAC"), "model": "WLPPO-SUB"},
+    "star": {"mac": os.getenv("STAR_PLUG_MAC"), "model": "WLPP1CFH"},
+    "christmas_tree": {"mac": os.getenv("CHRISTMAS_TREE_PLUG_MAC"), "model": "WLPP1CFH"},
+    "palm_tree": {"mac": os.getenv("PALM_TREE_PLUG_MAC"), "model": "WLPP1CFH"},
+    "fan": {"mac": os.getenv("FAN_PLUG_MAC"), "model": "WLPP1CFH"},
 }
 
 

@@ -6,6 +6,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
     QGridLayout,
+    QLabel,
     QMainWindow,
     QPushButton,
     QTabWidget,
@@ -13,6 +14,11 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 from PyQt6.QtGui import QIcon
+
+# Order categories should appear in; anything else found in scene files is
+# appended after these, alphabetically.
+CATEGORY_ORDER = ["indoor", "outdoor"]
+CATEGORY_LABELS = {"indoor": "Indoor", "outdoor": "Outdoor"}
 
 from wyze_setbulbs import get_wyze_client, apply_scene
 
@@ -79,11 +85,12 @@ class SceneSwitcher(QWidget):
     def __init__(self, parent=None, client=None):
         super().__init__(parent)
         self.client = client
-        self.grid_layout = QGridLayout(self)
+        self.main_layout = QVBoxLayout(self)
         self._load_scenes()
 
     def _load_scenes(self):
-        """Reads all .json files from the scenes folder and builds the button grid."""
+        """Reads all .json files from the scenes folder and builds one button
+        grid per category (indoor/outdoor/...), each under its own header."""
 
         # Use the new external_path function instead of resource_path
         scenes_path = external_path("scenes")
@@ -95,23 +102,43 @@ class SceneSwitcher(QWidget):
 
         files = sorted(scenes_path.glob("*.json"))
 
-        row, col = 0, 0
-        MAX_COLS = 3
-
+        scenes_by_category = {}
         for f in files:
             with open(f, "r") as fh:
                 scene = json.load(fh)
+            category = scene.get("category", "indoor")
+            scenes_by_category.setdefault(category, []).append(scene)
 
-            button = QPushButton(scene["name"])
-            button.clicked.connect(
-                lambda checked, scene=scene: apply_scene(self.client, scene)
-            )
+        ordered_categories = [c for c in CATEGORY_ORDER if c in scenes_by_category]
+        ordered_categories += sorted(
+            c for c in scenes_by_category if c not in CATEGORY_ORDER
+        )
 
-            self.grid_layout.addWidget(button, row, col)
-            col += 1
-            if col == MAX_COLS:
-                col = 0
-                row += 1
+        MAX_COLS = 3
+
+        for category in ordered_categories:
+            header = QLabel(CATEGORY_LABELS.get(category, category.title()).upper())
+            header.setObjectName("sectionHeader")
+            self.main_layout.addWidget(header)
+
+            section = QWidget()
+            grid_layout = QGridLayout(section)
+            row, col = 0, 0
+
+            for scene in scenes_by_category[category]:
+                button = QPushButton(scene["name"])
+                button.setProperty("category", category)
+                button.clicked.connect(
+                    lambda checked, scene=scene: apply_scene(self.client, scene)
+                )
+
+                grid_layout.addWidget(button, row, col)
+                col += 1
+                if col == MAX_COLS:
+                    col = 0
+                    row += 1
+
+            self.main_layout.addWidget(section)
 
 
 if __name__ == "__main__":

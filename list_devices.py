@@ -13,6 +13,7 @@ def main():
 
     if not devices:
         print("No devices found on this account.")
+        input("\nPress Enter to exit...")  # Keeps window open
         return
 
     for device in devices:
@@ -22,6 +23,8 @@ def main():
             f"model={device.product.model:<12} "
             f"type={device.product.type}"
         )
+
+    input("\nPress Enter to exit...")  # Keeps window open
 
 
 if __name__ == "__main__":
