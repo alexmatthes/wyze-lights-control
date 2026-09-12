@@ -1,0 +1,26 @@
+{
+    "name": "Grand Line Voyage",
+    "description": "Nautical and treasure-inspired. Deep ocean blue recedes overhead so the room reads as being under water rather than lit by it, while the desk lamp carries the gold \u2014 the treasure glow, and the brightest thing in the room. A crimson floor lamp anchors the corner like a ship's lantern.",
+    "bulbs": {
+        "desk_lamp": {
+            "is_on": true,
+            "color": "FFD700",
+            "brightness": 40
+        },
+        "overhead_left": {
+            "is_on": true,
+            "color": "0000FF",
+            "brightness": 15
+        },
+        "overhead_right": {
+            "is_on": true,
+            "color": "0000FF",
+            "brightness": 15
+        },
+        "floor_lamp": {
+            "is_on": true,
+            "color": "FF1746",
+            "brightness": 45
+        }
+    }
+}

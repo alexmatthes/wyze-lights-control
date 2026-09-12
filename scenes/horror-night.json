@@ -1,0 +1,22 @@
+{
+    "name": "Horror Night",
+    "description": "Darker and colder than Movie Night \u2014 dread instead of comfort. The screen bias goes sickly moonlight green: a cold, desaturated glow behind the monitor that keeps eye strain down while reading as morgue light, not cinema warmth. Overheads cut completely. The floor lamp is a single deep blood-red ember, uplit from below eye level so it looms rather than illuminates. The cold-front / warm-floor tension is what makes a room feel wrong \u2014 exactly what you want with the lights off in October.",
+    "bulbs": {
+        "desk_lamp": {
+            "is_on": true,
+            "color": "3AFFB0",
+            "brightness": 12
+        },
+        "overhead_left": {
+            "is_on": false
+        },
+        "overhead_right": {
+            "is_on": false
+        },
+        "floor_lamp": {
+            "is_on": true,
+            "color": "FF0000",
+            "brightness": 10
+        }
+    }
+}

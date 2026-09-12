@@ -1,0 +1,26 @@
+{
+    "name": "Vaporwave Stream",
+    "description": "Built for camera, so the color lives behind you instead of above you. The magenta floor lamp is the hero \u2014 it uplights the wall in frame and does the heavy lifting. Cyan drops to a thin overhead haze rather than a flood, keeping it out of the lens and off your skin. Indigo on the desk reads as a rim accent.",
+    "bulbs": {
+        "desk_lamp": {
+            "is_on": true,
+            "color": "9300FF",
+            "brightness": 45
+        },
+        "overhead_left": {
+            "is_on": true,
+            "color": "00FFFF",
+            "brightness": 15
+        },
+        "overhead_right": {
+            "is_on": true,
+            "color": "00FFFF",
+            "brightness": 15
+        },
+        "floor_lamp": {
+            "is_on": true,
+            "color": "FF00FF",
+            "brightness": 70
+        }
+    }
+}

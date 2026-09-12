@@ -1,0 +1,26 @@
+{
+    "name": "Marth Arena",
+    "description": "Tournament-floor lighting \u2014 colder and more clinical than CS2 Latenight, which it otherwise resembles. A stark 6500K bias light keeps the screen crisp and edges sharp. Royal blue sits low overhead, present but not participating. Ice cyan rises from the floor as the room's only real color.",
+    "bulbs": {
+        "desk_lamp": {
+            "is_on": true,
+            "color_temp": 6500,
+            "brightness": 40
+        },
+        "overhead_left": {
+            "is_on": true,
+            "color": "4A77FF",
+            "brightness": 14
+        },
+        "overhead_right": {
+            "is_on": true,
+            "color": "4A77FF",
+            "brightness": 14
+        },
+        "floor_lamp": {
+            "is_on": true,
+            "color": "80E8FF",
+            "brightness": 45
+        }
+    }
+}

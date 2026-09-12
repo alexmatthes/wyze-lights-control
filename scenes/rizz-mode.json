@@ -1,0 +1,26 @@
+{
+    "name": "Rizz Mode",
+    "description": "Low, warm, high-contrast. The amber desk lamp is the dominant source and sits below eye level as a key on the face \u2014 overhead purple is pulled right down to a wash so it colors the room without lighting you from above, which flatters nobody. Neon pink from the floor fills the shadow side.",
+    "bulbs": {
+        "desk_lamp": {
+            "is_on": true,
+            "color": "FFBF00",
+            "brightness": 35
+        },
+        "overhead_left": {
+            "is_on": true,
+            "color": "9300FF",
+            "brightness": 12
+        },
+        "overhead_right": {
+            "is_on": true,
+            "color": "9300FF",
+            "brightness": 12
+        },
+        "floor_lamp": {
+            "is_on": true,
+            "color": "FF1493",
+            "brightness": 45
+        }
+    }
+}
