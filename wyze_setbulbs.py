@@ -14,6 +14,15 @@ else:
 load_dotenv(env_path)
 
 from wyze_sdk import Client
+from wyze_sdk.models.devices import DeviceModels
+
+# wyze_sdk (as of 2.3.8, the latest release) doesn't yet recognize "HL_A19C2"
+# (the newer color mesh bulb used in outdoor fixtures) as a mesh bulb, so its
+# turn_on/set_color/set_brightness calls reject it with "not supported" even
+# though it uses the same mesh-property API as WLPA19C. Register it ourselves.
+if "HL_A19C2" not in DeviceModels.MESH_BULB:
+    DeviceModels.MESH_BULB.append("HL_A19C2")
+    DeviceModels.BULB.append("HL_A19C2")
 
 # Static mapping of logical bulb names to physical hardware.
 # MAC addresses come from the .env file so they never live in scene data.
