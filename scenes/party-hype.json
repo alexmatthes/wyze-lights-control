@@ -1,6 +1,6 @@
 {
   "name": "Party Hype",
-  "description": "Nightclub color contrast \u2014 split complementaries at war. Opposing colors fight each other visually, producing electric, unstable energy that reads as excitement. Everything at high brightness, no apologies.",
+  "description": "Nightclub color contrast \u2014 split complementaries at war. Opposing colors fight each other visually, producing electric, unstable energy that reads as excitement. Everything at high brightness, no apologies. The neon palm tree joins as one more clashing source \u2014 it only adds to the chaos here.",
   "bulbs": {
     "desk_lamp": {
       "is_on": true,
@@ -21,6 +21,11 @@
       "is_on": true,
       "color": "39FF14",
       "brightness": 85
+    }
+  },
+  "plugs": {
+    "palm_tree": {
+      "is_on": true
     }
   }
 }

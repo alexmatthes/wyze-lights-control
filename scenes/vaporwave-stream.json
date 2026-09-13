@@ -1,6 +1,6 @@
 {
     "name": "Vaporwave Stream",
-    "description": "Built for camera, so the color lives behind you instead of above you. The magenta floor lamp is the hero \u2014 it uplights the wall in frame and does the heavy lifting. Cyan drops to a thin overhead haze rather than a flood, keeping it out of the lens and off your skin. Indigo on the desk reads as a rim accent.",
+    "description": "Built for camera, so the color lives behind you instead of above you. The magenta floor lamp is the hero \u2014 it uplights the wall in frame and does the heavy lifting. Cyan drops to a thin overhead haze rather than a flood, keeping it out of the lens and off your skin. Indigo on the desk reads as a rim accent. The neon palm tree stays lit as an in-frame prop \u2014 pure vaporwave signifier, doing no actual lighting work.",
     "bulbs": {
         "desk_lamp": {
             "is_on": true,
@@ -21,6 +21,11 @@
             "is_on": true,
             "color": "FF00FF",
             "brightness": 70
+        }
+    },
+    "plugs": {
+        "palm_tree": {
+            "is_on": true
         }
     }
 }
